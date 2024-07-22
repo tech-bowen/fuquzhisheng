@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .marquee {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .announcement {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .redirect-button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: 20px;
+        }
+        .redirect-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .redirect-button button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        .countdown {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="marquee">
+    <span>未查询到信息，请重试！</span>
+</div>
+
+<div class="announcement">
+    <h2>公告</h2>
+    <p>未查询到信息，请重试！</p>
+    <div class="countdown">自动跳转倒计时: <span id="countdown">5</span> 秒</div>
+</div>
+
+<div class="redirect-button">
+    <button onclick="redirectNow()">立即跳转</button>
+</div>
+
+<div class="footer">
+    &copy; 2024 Tech-Bowen管理组. 保留所有权利
+</div>
+
+<script>
+    // 设置自动跳转的URL
+    var redirectUrl = "https://fuquzhisheng.mysxl.cn/";
+
+    // 初始化倒计时
+    var countdown = 5;
+    var countdownElement = document.getElementById('countdown');
+
+    // 更新倒计时
+    function updateCountdown() {
+        countdown--;
+        countdownElement.textContent = countdown;
+        if (countdown === 0) {
+            window.location.href = redirectUrl;
+        }
+    }
+
+    // 每秒更新一次倒计时
+    setInterval(updateCountdown, 1000);
+
+    // 手动跳转功能
+    function redirectNow() {
+        window.location.href = redirectUrl;
+    }
+</script>
+
+</body>
+</html>
